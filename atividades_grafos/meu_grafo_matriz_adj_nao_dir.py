@@ -1,7 +1,6 @@
 from bibgrafo.grafo_matriz_adj_nao_dir import GrafoMatrizAdjacenciaNaoDirecionado
 from bibgrafo.grafo_errors import *
 
-
 class MeuGrafo(GrafoMatrizAdjacenciaNaoDirecionado):
     def vertices_nao_adjacentes(self):
         '''

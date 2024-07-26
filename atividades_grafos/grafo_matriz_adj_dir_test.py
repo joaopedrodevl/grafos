@@ -209,6 +209,79 @@ class TestGrafo(unittest.TestCase):
             self.g_e_m[2][i] = 1
             self.g_e_m[3][i] = 1
             self.g_e_m[4][i] = 1
+            
+        self.g_p2_m = self.constroi_matriz(self.g_p2)
+        self.g_p2_m[0][1] = 1
+        self.g_p2_m[0][2] = 1
+        self.g_p2_m[1][2] = 1
+        self.g_p2_m[3][1] = 1
+        self.g_p2_m[3][2] = 1
+        self.g_p2_m[4][1] = 1
+        self.g_p2_m[4][2] = 1
+        self.g_p2_m[4][5] = 1
+        self.g_p2_m[4][6] = 1
+        self.g_p2_m[5][1] = 1
+        self.g_p2_m[5][2] = 1
+        self.g_p2_m[5][6] = 1       
+        
+        self.g_p3_m = self.constroi_matriz(self.g_p3)
+        self.g_p3_m[0][1] = 1
+        self.g_p3_m[0][2] = 1
+        self.g_p3_m[1][2] = 1
+        self.g_p3_m[3][1] = 1
+        self.g_p3_m[3][2] = 1
+        self.g_p3_m[4][1] = 1
+        self.g_p3_m[4][2] = 1
+        self.g_p3_m[4][5] = 1
+        self.g_p3_m[4][6] = 1
+        self.g_p3_m[5][1] = 1
+        self.g_p3_m[5][2] = 1
+        self.g_p3_m[5][6] = 1 
+        
+        self.g_p4_m = self.constroi_matriz(self.g_p4)
+        self.g_p4_m[0][1] = 1
+        self.g_p4_m[0][2] = 1
+        self.g_p4_m[1][2] = 1
+        self.g_p4_m[3][1] = 1
+        self.g_p4_m[3][2] = 1
+        self.g_p4_m[4][1] = 1
+        self.g_p4_m[4][2] = 1
+        self.g_p4_m[4][5] = 1
+        self.g_p4_m[4][6] = 1
+        self.g_p4_m[5][1] = 1
+        self.g_p4_m[5][2] = 1
+        self.g_p4_m[5][6] = 1
+        
+        self.g_p_sem_paralelas_m = self.constroi_matriz(self.g_p_sem_paralelas)
+        self.g_p_sem_paralelas_m[0][1] = 1
+        self.g_p_sem_paralelas_m[0][2] = 1
+        self.g_p_sem_paralelas_m[1][2] = 1
+        self.g_p_sem_paralelas_m[3][1] = 1
+        self.g_p_sem_paralelas_m[3][2] = 1
+        self.g_p_sem_paralelas_m[4][1] = 1
+        self.g_p_sem_paralelas_m[4][2] = 1
+        self.g_p_sem_paralelas_m[4][5] = 1
+        self.g_p_sem_paralelas_m[4][6] = 1
+        self.g_p_sem_paralelas_m[5][1] = 1
+        self.g_p_sem_paralelas_m[5][2] = 1
+        self.g_p_sem_paralelas_m[5][6] = 1
+        
+        self.g_c_m = self.constroi_matriz(self.g_c)
+        self.g_c_m[0][1] = 1
+        self.g_c_m[0][2] = 1
+        self.g_c_m[0][3] = 1
+        self.g_c_m[2][1] = 1
+        self.g_c_m[3][1] = 1
+        self.g_c_m[3][2] = 1
+        
+        self.g_c2_m = self.constroi_matriz(self.g_c2)
+        self.g_c2_m[0][1] = 1
+        
+        self.g_c3_m = self.constroi_matriz(self.g_c3)
+        
+        self.g_l1_m = self.constroi_matriz(self.g_l1)
+        self.g_l1_m[0][0] = 1
+        self.g_l1_m[0][1] = 1
 
         # Grafos desconexos
         self.g_dijkstra = MeuGrafo()
@@ -348,10 +421,31 @@ class TestGrafo(unittest.TestCase):
         with self.assertRaises(VerticeInvalidoError):
             self.g_p.arestas_sobre_vertice('A')
         self.assertEqual(self.g_e.arestas_sobre_vertice('D'), {'5', '6', '7', '8'})
+        
+    def test_eh_completo(self):
+        self.assertFalse(self.g_p.eh_completo())
+        self.assertFalse(self.g_p_sem_paralelas.eh_completo())
+        self.assertFalse(self.g_c.eh_completo())
+        self.assertFalse(self.g_c2.eh_completo())
+        self.assertTrue(self.g_c3.eh_completo())
+        self.assertFalse(self.g_l1.eh_completo())
+        self.assertFalse(self.g_l2.eh_completo())
+        self.assertFalse(self.g_l3.eh_completo())
+        self.assertTrue(self.g_l4.eh_completo())
+        self.assertFalse(self.g_l5.eh_completo())
+        self.assertFalse(self.g_e.eh_completo())
 
     def test_warshall(self):
         self.assertEqual(self.g_p.warshall(), self.g_p_m)
         self.assertEqual(self.g_e.warshall(), self.g_e_m)
+        self.assertEqual(self.g_p2.warshall(), self.g_p2_m)
+        self.assertEqual(self.g_p3.warshall(), self.g_p3_m)
+        self.assertEqual(self.g_p4.warshall(), self.g_p4_m)
+        self.assertEqual(self.g_p_sem_paralelas.warshall(), self.g_p_sem_paralelas_m)
+        self.assertEqual(self.g_c.warshall(), self.g_c_m)
+        self.assertEqual(self.g_c2.warshall(), self.g_c2_m)
+        self.assertEqual(self.g_c3.warshall(), self.g_c3_m)
+        self.assertEqual(self.g_l1.warshall(), self.g_l1_m)
 
     def test_dijkstra(self):
         pass
