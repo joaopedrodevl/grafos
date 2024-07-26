@@ -129,14 +129,3 @@ class MeuGrafo(GrafoMatrizAdjacenciaDirecionado):
                     matriz[i][j] = matriz[i][j] or (matriz[i][k] and matriz[k][j])
                     
         return matriz
-
-g_l2 = MeuGrafo()
-g_l2.adiciona_vertice("A")
-g_l2.adiciona_vertice("B")
-g_l2.adiciona_vertice("C")
-g_l2.adiciona_vertice("D")
-g_l2.adiciona_aresta('a1', 'A', 'B')
-g_l2.adiciona_aresta('a2', 'B', 'B')
-g_l2.adiciona_aresta('a3', 'B', 'A')
-
-print(g_l2.warshall())

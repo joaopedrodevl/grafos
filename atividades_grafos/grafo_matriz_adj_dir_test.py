@@ -186,6 +186,47 @@ class TestGrafo(unittest.TestCase):
         self.g_e.adiciona_aresta('8', 'D', 'E')
         self.g_e.adiciona_aresta('9', 'E', 'A')
         self.g_e.adiciona_aresta('11', 'E', 'B')
+        
+        self.grafo1 = MeuGrafo()
+        self.grafo1.adiciona_vertice('A')
+        self.grafo1.adiciona_vertice('B')
+        self.grafo1.adiciona_vertice('C')
+        self.grafo1.adiciona_vertice('D')
+        self.grafo1.adiciona_vertice('E')
+        self.grafo1.adiciona_vertice('F')
+        self.grafo1.adiciona_vertice('G')
+        self.grafo1.adiciona_aresta('A-B', "A", "B")
+        self.grafo1.adiciona_aresta('A-C', "A", "C")
+        self.grafo1.adiciona_aresta('B-D', "B", "D")
+        self.grafo1.adiciona_aresta('C-D', "C", "D")
+        self.grafo1.adiciona_aresta('C-E', "C", "E")
+        self.grafo1.adiciona_aresta('D-F', "D", "F")
+        self.grafo1.adiciona_aresta('E-F', "E", "F")
+        self.grafo1.adiciona_aresta('F-G', "F", "G")
+        self.grafo1.adiciona_aresta('G-E', "G", "E")
+        
+        self.grafo2 = MeuGrafo()
+        self.grafo2.adiciona_vertice('A')
+        self.grafo2.adiciona_vertice('B')
+        self.grafo2.adiciona_vertice('C')
+        self.grafo2.adiciona_vertice('D')
+        self.grafo2.adiciona_vertice('E')
+        self.grafo2.adiciona_vertice('F')
+        self.grafo2.adiciona_aresta('A-B', "A", "B")
+        self.grafo2.adiciona_aresta('A-C', "A", "C")
+        self.grafo2.adiciona_aresta('A-D', "A", "D")
+        self.grafo2.adiciona_aresta('A-E', "A", "E")
+        self.grafo2.adiciona_aresta('A-F', "A", "F")
+        self.grafo2.adiciona_aresta('B-C', "B", "C")
+        self.grafo2.adiciona_aresta('B-D', "B", "D")
+        self.grafo2.adiciona_aresta('B-E', "B", "E")
+        self.grafo2.adiciona_aresta('B-F', "B", "F")
+        self.grafo2.adiciona_aresta('C-D', "C", "D")
+        self.grafo2.adiciona_aresta('C-E', "C", "E")
+        self.grafo2.adiciona_aresta('C-F', "C", "F")
+        self.grafo2.adiciona_aresta('D-E', "D", "E")
+        self.grafo2.adiciona_aresta('D-F', "D", "F")
+        self.grafo2.adiciona_aresta('E-F', "E", "F")
 
         # Matrizes para teste do algoritmo de Warshall
 
@@ -282,7 +323,80 @@ class TestGrafo(unittest.TestCase):
         self.g_l1_m = self.constroi_matriz(self.g_l1)
         self.g_l1_m[0][0] = 1
         self.g_l1_m[0][1] = 1
-
+        
+        self.g_l2_m = self.constroi_matriz(self.g_l2)
+        self.g_l2_m[0][0] = 1
+        self.g_l2_m[0][1] = 1
+        self.g_l2_m[1][0] = 1
+        self.g_l2_m[1][1] = 1
+        
+        self.g_l3_m = self.constroi_matriz(self.g_l3)
+        self.g_l3_m[2][0] = 1
+        self.g_l3_m[2][2] = 1
+        self.g_l3_m[3][3] = 1
+        
+        self.g_l4_m = self.constroi_matriz(self.g_l4)
+        self.g_l4_m[0][0] = 1
+        
+        self.g_l5_m = self.constroi_matriz(self.g_l5)
+        self.g_l5_m[0][0] = 1
+        self.g_l5_m[1][0] = 1
+        
+        self.g_d_m = self.constroi_matriz(self.g_d)
+        self.g_d_m[0][1] = 1
+        
+        self.g_e_m = self.constroi_matriz(self.g_e)
+        for i in range(0, len(self.g_e_m)):
+            self.g_e_m[0][i] = 1
+            self.g_e_m[2][i] = 1
+            self.g_e_m[3][i] = 1
+            self.g_e_m[4][i] = 1
+            
+        self.grafo1_m = self.constroi_matriz(self.grafo1)
+        self.grafo1_m[0][1] = 1
+        self.grafo1_m[0][2] = 1
+        self.grafo1_m[0][3] = 1
+        self.grafo1_m[0][4] = 1
+        self.grafo1_m[0][5] = 1
+        self.grafo1_m[0][6] = 1
+        self.grafo1_m[1][3] = 1
+        self.grafo1_m[1][4] = 1
+        self.grafo1_m[1][5] = 1
+        self.grafo1_m[1][6] = 1
+        self.grafo1_m[2][3] = 1
+        self.grafo1_m[2][4] = 1
+        self.grafo1_m[2][5] = 1
+        self.grafo1_m[2][6] = 1
+        self.grafo1_m[3][4] = 1
+        self.grafo1_m[3][5] = 1
+        self.grafo1_m[3][6] = 1
+        self.grafo1_m[4][4] = 1
+        self.grafo1_m[4][5] = 1
+        self.grafo1_m[4][6] = 1
+        self.grafo1_m[5][4] = 1
+        self.grafo1_m[5][5] = 1
+        self.grafo1_m[5][6] = 1
+        self.grafo1_m[6][4] = 1
+        self.grafo1_m[6][5] = 1
+        self.grafo1_m[6][6] = 1
+        
+        self.grafo2_m = self.constroi_matriz(self.grafo2)
+        self.grafo2_m[0][1] = 1
+        self.grafo2_m[0][2] = 1
+        self.grafo2_m[0][3] = 1
+        self.grafo2_m[0][4] = 1
+        self.grafo2_m[0][5] = 1
+        self.grafo2_m[1][2] = 1
+        self.grafo2_m[1][3] = 1
+        self.grafo2_m[1][4] = 1
+        self.grafo2_m[1][5] = 1
+        self.grafo2_m[2][3] = 1
+        self.grafo2_m[2][4] = 1
+        self.grafo2_m[2][5] = 1
+        self.grafo2_m[3][4] = 1
+        self.grafo2_m[3][5] = 1
+        self.grafo2_m[4][5] = 1
+        
         # Grafos desconexos
         self.g_dijkstra = MeuGrafo()
         self.g_dijkstra.adiciona_vertice("A")
@@ -446,6 +560,14 @@ class TestGrafo(unittest.TestCase):
         self.assertEqual(self.g_c2.warshall(), self.g_c2_m)
         self.assertEqual(self.g_c3.warshall(), self.g_c3_m)
         self.assertEqual(self.g_l1.warshall(), self.g_l1_m)
+        self.assertEqual(self.g_l2.warshall(), self.g_l2_m)
+        self.assertEqual(self.g_l3.warshall(), self.g_l3_m)
+        self.assertEqual(self.g_l4.warshall(), self.g_l4_m)
+        self.assertEqual(self.g_l5.warshall(), self.g_l5_m)
+        self.assertEqual(self.g_d.warshall(), self.g_d_m)
+        self.assertEqual(self.g_e.warshall(), self.g_e_m)
+        self.assertEqual(self.grafo1.warshall(), self.grafo1_m)
+        self.assertEqual(self.grafo2.warshall(), self.grafo2_m)
 
     def test_dijkstra(self):
         pass
