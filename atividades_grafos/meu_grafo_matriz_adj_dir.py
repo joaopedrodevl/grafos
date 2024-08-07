@@ -180,15 +180,21 @@ class MeuGrafo(GrafoMatrizAdjacenciaDirecionado):
 
             menor = float('inf')
 
+            vis = []
+
             for chave, valor in dijkstra.items():
-                if valor[1] == 0 and valor[0] < menor:
+                vis.append(w)
+                if valor[1] == 0 and valor[0] < menor and chave not in vis:
                     w = chave
-                    dijkstra[w][1] = 1
                     visitados = False
+                    menor = valor[0]
+
+                if len(vis) == len(dijkstra):
+                    dijkstra[w][1] = 1
                     break
 
             if visitados:
-                return []
+                return "Nenhum caminho encontrado!"
 
 grafo = MeuGrafo()
 grafo.adiciona_vertice("X")
