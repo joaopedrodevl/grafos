@@ -195,27 +195,3 @@ class MeuGrafo(GrafoMatrizAdjacenciaDirecionado):
 
             if visitados:
                 return "Nenhum caminho encontrado!"
-
-grafo = MeuGrafo()
-grafo.adiciona_vertice("X")
-grafo.adiciona_vertice("Y")
-grafo.adiciona_vertice("L")
-grafo.adiciona_vertice("M")
-grafo.adiciona_vertice("N")
-grafo.adiciona_vertice("Z")
-grafo.adiciona_vertice("K")
-grafo.adiciona_aresta("X-Y", "X", "Y", 1)
-grafo.adiciona_aresta("X-M", "X", "M", 3)
-grafo.adiciona_aresta("Y-L", "Y", "L", 2)
-grafo.adiciona_aresta("Y-K", "Y", "K", 4)
-grafo.adiciona_aresta("L-Y", "L", "Y", 3)
-grafo.adiciona_aresta("L-M", "L", "M", 5)
-grafo.adiciona_aresta("N-L", "N", "L", 4)
-grafo.adiciona_aresta("N-X", "N", "X", 2)
-grafo.adiciona_aresta("Z-X", "Z", "X", 7)
-grafo.adiciona_aresta("Z-Y", "Z", "Y", 4)
-grafo.adiciona_aresta("Z-K", "Z", "K", 3)
-grafo.adiciona_aresta("Z-L", "Z", "L", 1)
-grafo.adiciona_aresta("K-Z", "K", "Z", 1)
-grafo.adiciona_aresta("K-L", "K", "L", 3)
-print(grafo.dijkstra("X", "L"))
