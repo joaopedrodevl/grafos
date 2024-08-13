@@ -197,14 +197,15 @@ class MeuGrafo(GrafoMatrizAdjacenciaDirecionado):
                 return "Nenhum caminho encontrado!"
             
     def bellman_ford(self, origem, destino):
+        if not self.existe_rotulo_vertice(origem) or not self.existe_rotulo_vertice(destino):
+            raise VerticeInvalidoError(f'Os vértices {origem} ou {destino} não existem no grafo')
+        
         grafo = self
 
-        # Inicializa as distâncias e predecessores
         distancias = {v.rotulo: float('inf') for v in grafo.vertices}
         distancias[origem] = 0
         predecessores = {v.rotulo: None for v in grafo.vertices}
 
-        # Relaxa as arestas repetidamente
         for _ in range(len(grafo.vertices) - 1):
             for u in grafo.vertices:
                 indice_u = grafo.indice_do_vertice(u)
@@ -216,7 +217,6 @@ class MeuGrafo(GrafoMatrizAdjacenciaDirecionado):
                             distancias[v.rotulo] = distancias[u.rotulo] + peso
                             predecessores[v.rotulo] = u.rotulo
 
-        # Verifica a presença de ciclos de peso negativo
         for u in grafo.vertices:
             indice_u = grafo.indice_do_vertice(u)
             for v in grafo.vertices:
@@ -225,8 +225,7 @@ class MeuGrafo(GrafoMatrizAdjacenciaDirecionado):
                     peso = next(iter(grafo.arestas[indice_u][indice_v].values()), None).peso
                     if distancias[u.rotulo] + peso < distancias[v.rotulo]:
                         return False
-
-        # Reconstrói o caminho do destino para a origem
+                    
         caminho = []
         atual = destino
         while atual:
@@ -235,23 +234,6 @@ class MeuGrafo(GrafoMatrizAdjacenciaDirecionado):
         caminho.reverse()
 
         if distancias[destino] == float('inf'):
-            return "Nenhum caminho encontrado!"
+            return "Nenhum caminho encontrado entre os vértices: " + origem + " e " + destino + "!"
         
         return caminho
-    
-grafo = MeuGrafo()
-grafo.adiciona_vertice('A')
-grafo.adiciona_vertice('B')
-grafo.adiciona_vertice('C')
-grafo.adiciona_vertice('D')
-grafo.adiciona_vertice('E')
-grafo.adiciona_vertice('F')
-grafo.adiciona_aresta('ab', 'A', 'B', 9)
-grafo.adiciona_aresta('ac', 'A', 'C', 7)
-grafo.adiciona_aresta('cd', 'C', 'D', 2)
-grafo.adiciona_aresta('de', 'D', 'E', 2)
-grafo.adiciona_aresta('be', 'B', 'E', 2)
-grafo.adiciona_aresta('db', 'D', 'B', -3)
-grafo.adiciona_aresta('ef', 'E', 'F', -2)
-grafo.adiciona_aresta('fb', 'F', 'B', 2)
-print(grafo.bellman_ford('A', 'F'))
